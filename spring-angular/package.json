@@ -1,0 +1,13 @@
+{
+  "name": "generator-spring-angular",
+  "version": "0.0.1",
+  "description": "Creates a spring boot Java web application pre-loaded with Angular and Bootstrap",
+  "files": [
+    "app",
+    "router"
+  ],
+  "keywords": ["yeoman-generator", "spring", "java", "maven"],
+  "dependencies": {
+    "yeoman-generator": "^0.17.3"
+  }
+}
