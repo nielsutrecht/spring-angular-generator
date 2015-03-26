@@ -56,7 +56,6 @@ SpringGenerator.prototype.askFor = function askFor() {
         this.packageName = props.packageName;
         this.baseName = props.baseName;
         this.bootVersion = props.bootVersion;
-        this.useSpock = props.useSpock;
         this.starters = props.starters;
 
         var hasStarter = function (starter) { return props.starters.indexOf(starter) !== -1; };
@@ -70,9 +69,12 @@ SpringGenerator.prototype.askFor = function askFor() {
 SpringGenerator.prototype.app = function app() {
     var packageFolder = this.packageName.replace(/\./g, '/');
     var srcDir = 'src/main/java/' + packageFolder;
+    var appDir = 'src/main/webapp';
     this.mkdir(srcDir);
     this.template('_pom.xml', 'pom.xml');
     this.template('_Application.java', srcDir + '/Application.java');
+    this.template('_index.html', appDir + '/index.html');
+    this.template('_app.js', appDir + '/app.js');
 
     this.config.set('packageName', this.packageName);
     this.config.set('packageFolder', packageFolder);
