@@ -1,3 +1,5 @@
+//Based on: http://code.tutsplus.com/tutorials/build-your-own-yeoman-generator--cms-20040
+
 'use strict';
 var util = require('util');
 var path = require('path');
@@ -11,7 +13,7 @@ var SpringAngularGenerator = module.exports = function SpringAngularGenerator(ar
 util.inherits(SpringAngularGenerator, yeoman.generators.Base);
 
 SpringGenerator.prototype.askFor = function askFor() {
-    var cb = this.async();
+    var done = this.async();
     console.log(chalk.green('\nWelcome to the Spring/Angular Generator\n\n'));
     var prompts = [
         {
@@ -61,7 +63,7 @@ SpringGenerator.prototype.askFor = function askFor() {
         this.jpa = hasStarter('jpa');
         this.logging = hasStarter('logging');
 
-        cb();
+        done();
     }.bind(this));
 };
 
@@ -69,8 +71,8 @@ SpringGenerator.prototype.app = function app() {
     var packageFolder = this.packageName.replace(/\./g, '/');
     var srcDir = 'src/main/java/' + packageFolder;
     this.mkdir(srcDir);
-    this.template('templates/_pom.xml', 'pom.xml');
-    this.template('Application.java', srcDir + '/Application.java');
+    this.template('_pom.xml', 'pom.xml');
+    this.template('_Application.java', srcDir + '/Application.java');
 
     this.config.set('packageName', this.packageName);
     this.config.set('packageFolder', packageFolder);
